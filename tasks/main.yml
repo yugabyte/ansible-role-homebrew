@@ -64,35 +64,35 @@
 
 - name: Ensure certain directories exist and have correct permissions on Mac OS X
   file:
-    dest: "{{ item }}"
+    dest: "{{ homebrew_prefix }}/{{ item }}"
     state: directory
     owner: "{{ homebrew_user }}"
     group: "{{ homebrew_group }}"
   when: ansible_os_family == "Darwin"
   become: yes
   with_items:
-    - /usr/local/bin
-    - /usr/local/Cellar
-    - /usr/local/etc
-    - /usr/local/etc/bash_completion.d
-    - /usr/local/include
-    - /usr/local/lib
-    - /usr/local/lib/pkgconfig
-    - /usr/local/opt
-    - /usr/local/sbin
-    - /usr/local/share
-    - /usr/local/share/doc
-    - /usr/local/share/info
-    - /usr/local/share/man
-    - /usr/local/share/man/man1
-    - /usr/local/share/zsh
-    - /usr/local/share/zsh/site-functions
-    - /usr/local/var
-    - /usr/local/var/homebrew
-    - /usr/local/var/homebrew/linked
-    - /usr/local/var/homebrew/locks
-    - /usr/local/var/log
-    - /usr/local/Frameworks
+    - bin
+    - Cellar
+    - etc
+    - etc/bash_completion.d
+    - include
+    - lib
+    - lib/pkgconfig
+    - opt
+    - sbin
+    - share
+    - share/doc
+    - share/info
+    - share/man
+    - share/man/man1
+    - share/zsh
+    - share/zsh/site-functions
+    - var
+    - var/homebrew
+    - homebrew/linked
+    - homebrew/locks
+    - var/log
+    - Frameworks
 
 # Place brew binary in proper location and complete setup.
 - name: Check if homebrew binary is already in place.
