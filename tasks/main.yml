@@ -89,8 +89,8 @@
     - share/zsh/site-functions
     - var
     - var/homebrew
-    - homebrew/linked
-    - homebrew/locks
+    - var/homebrew/linked
+    - var/homebrew/locks
     - var/log
     - Frameworks
 
