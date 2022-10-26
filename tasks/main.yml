@@ -5,13 +5,21 @@
     homebrew_group: '{{ homebrew_group | default(ansible_user_gid) }}'
 
 # Homebrew setup prerequisites.
+- name: Ensure Homebrew parent directory has correct permissions (arm64).
+  file:
+    path: "{{ homebrew_prefix }}"
+    owner: "{{ homebrew_user }}"
+    state: directory
+  become: true
+  when: ansible_machine == "arm64"
+
 - name: Ensure Homebrew parent directory has correct permissions (MacOS >= 10.13).
   file:
     path: "{{ homebrew_prefix }}"
     owner: root
     state: directory
   become: true
-  when: "ansible_distribution_version is version('10.13', '>=')"
+  when: ansible_distribution_version is version('10.13', '>=') and ansible_machine == "x86_64"
 
 - name: Ensure Homebrew parent directory has correct permissions (MacOS < 10.13).
   file:
